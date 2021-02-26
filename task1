@@ -1,0 +1,154 @@
+Microsoft Windows [Version 10.0.18363.1256]
+(c) 2019 Microsoft Corporation. All rights reserved.
+
+C:\Users\gr0009au>mysql -u root -p
+Enter password: *******
+Welcome to the MySQL monitor.  Commands end with ; or \g.
+Your MySQL connection id is 15
+Server version: 8.0.23 MySQL Community Server - GPL
+
+Copyright (c) 2000, 2021, Oracle and/or its affiliates.
+
+Oracle is a registered trademark of Oracle Corporation and/or its
+affiliates. Other names may be trademarks of their respective
+owners.
+
+Type 'help;' or '\h' for help. Type '\c' to clear the current input statement.
+
+mysql> use trv11;
+Database changed
+mysql> show databases;
++--------------------+
+| Database           |
++--------------------+
+| flightdetails      |
+| fruits             |
+| information_schema |
+| mysql              |
+| nyka               |
+| online_batch       |
+| performance_schema |
+| sakila             |
+| sys                |
+| trv11              |
+| world              |
+| xworkz             |
++--------------------+
+12 rows in set (0.00 sec)
+
+mysql> desc movie;
++-----------+-------------+------+-----+---------+-------+
+| Field     | Type        | Null | Key | Default | Extra |
++-----------+-------------+------+-----+---------+-------+
+| movieId   | int         | NO   | PRI | NULL    |       |
+| name      | varchar(45) | YES  |     | NULL    |       |
+| duriation | float       | YES  |     | NULL    |       |
++-----------+-------------+------+-----+---------+-------+
+3 rows in set (0.02 sec)
+
+
+mysql> insert into movie values(1,'Dia',2.20);
+Query OK, 1 row affected (0.11 sec)
+
+mysql> select * from movie;
++---------+------+-----------+
+| movieId | name | duriation |
++---------+------+-----------+
+|       1 | Dia  |       2.2 |
++---------+------+-----------+
+1 row in set (0.10 sec)
+
+
+mysql> select * from movie;
++---------+------+-----------+
+| movieId | name | duriation |
++---------+------+-----------+
+|       1 | Dia  |       2.2 |
++---------+------+-----------+
+1 row in set (0.00 sec)
+
+mysql> insert into movie values(2,'KGF',3.0);
+Query OK, 1 row affected (0.09 sec)
+
+mysql> select * from movie;
++---------+------+-----------+
+| movieId | name | duriation |
++---------+------+-----------+
+|       1 | Dia  |       2.2 |
+|       2 | KGF  |         3 |
++---------+------+-----------+
+2 rows in set (0.00 sec)
+
+
+mysql> update movie
+    -> set duriation=2.0
+    -> ;
+Query OK, 2 rows affected (0.20 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from movie;
++---------+------+-----------+
+| movieId | name | duriation |
++---------+------+-----------+
+|       1 | Dia  |         2 |
+|       2 | KGF  |         2 |
++---------+------+-----------+
+2 rows in set (0.00 sec)
+
+mysql> update movie
+    -> set duriation=3
+    -> ;
+Query OK, 2 rows affected (0.09 sec)
+Rows matched: 2  Changed: 2  Warnings: 0
+
+mysql> select * from movie;
++---------+------+-----------+
+| movieId | name | duriation |
++---------+------+-----------+
+|       1 | Dia  |         3 |
+|       2 | KGF  |         3 |
++---------+------+-----------+
+2 rows in set (0.10 sec)
+
+
+mysql> update movie
+    -> set duriation=2
+    -> where movieId=1;
+Query OK, 1 row affected (0.09 sec)
+Rows matched: 1  Changed: 1  Warnings: 0
+
+mysql> select * from movie;
++---------+------+-----------+
+| movieId | name | duriation |
++---------+------+-----------+
+|       1 | Dia  |         2 |
+|       2 | KGF  |         3 |
++---------+------+-----------+
+2 rows in set (0.02 sec)
+
+
+mysql> delete from movie
+    -> where movieId=2;
+Query OK, 1 row affected (0.18 sec)
+
+mysql> select * from movie;
++---------+------+-----------+
+| movieId | name | duriation |
++---------+------+-----------+
+|       1 | Dia  |         2 |
++---------+------+-----------+
+1 row in set (0.01 sec)
+
+mysql> update movie
+    -> set duriation=2
+    -> where movieId=2;
+Query OK, 0 rows affected (0.00 sec)
+Rows matched: 0  Changed: 0  Warnings: 0
+
+mysql> select * from movie;
++---------+------+-----------+
+| movieId | name | duriation |
++---------+------+-----------+
+|       1 | Dia  |         2 |
++---------+------+-----------+
+1 row in set (0.00 sec)
